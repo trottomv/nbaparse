@@ -1,22 +1,29 @@
+require 'dotenv'
 require 'nokogiri'
 require 'open-uri'
 require 'date'
 
-class HRparse
-  # def url
-  #   url = "http://tvrex.net/"
-  # end
 
-  def rocketsurl
-    "http://tvrex.net/category/nba/houston-rockets/"
+class HRparse
+
+  def initialize
+    Dotenv.load
   end
 
-  def rocketsparse
-    Nokogiri::HTML(open("#{rocketsurl}"))
+  def teamurl
+    "#{ENV['TEAM_URL']}"
+  end
+
+  def teamparse
+    Nokogiri::HTML(open("#{teamurl}"))
+  end
+
+  def itemtitle
+    teamparse.css('h2 a').map { |title| title.text }
   end
 
   def itemurl
-    rocketsparse.css('h2 a').map { |link| link['href'] }
+    teamparse.css('h2 a').map { |link| link['href'] }
   end
 
   def itemframe
@@ -28,4 +35,6 @@ class HRparse
 
 end
 
-# puts HRparse.new.itemframe
+# puts "#{HRparse.new.itemtitle} #{HRparse.new.itemframe}"
+# puts HRparse.new.itemtitle
+puts HRparse.new.itemframe
