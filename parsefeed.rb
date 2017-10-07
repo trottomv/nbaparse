@@ -37,4 +37,4 @@ end
 
 # puts "#{HRparse.new.itemtitle} #{HRparse.new.itemframe}"
 # puts HRparse.new.itemtitle
-puts HRparse.new.itemframe
+# puts HRparse.new.itemframe
