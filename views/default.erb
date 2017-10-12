@@ -1,0 +1,14 @@
+<head>
+<title>NBA parse</title>
+</head>
+<body>
+<h1><%= @teamcategory %></h1>
+<% @items.map do |item| %>
+<h3><%= item[:itemtitle] %> [<a href='<%= item[:itemurl] %>'>link</a>]</h3>
+<p>Video: <a href='<%= item[:itemframe] %>'><%= item[:itemframe] %></a></p>
+<% end %>
+
+<!-- <h3><%= @itemtitle %></h3> -->
+<!-- <p><%= @itemid %></p> -->
+<!-- <p><a href='<%= @itemurl %>'><%= @itemurl %></a></p> -->
+<!-- <p><a href='<%= @itemframe %>'><%= @itemframe %></a></p> -->

@@ -1,3 +1,3 @@
 # nbaparse
 
-full game replay from tvrex parse only iframe incorporate in an item 
+full game replay from NBA streaming parsing only iframe incorporate in an item 
