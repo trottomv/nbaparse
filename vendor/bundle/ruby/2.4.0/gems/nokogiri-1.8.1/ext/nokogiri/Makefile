@@ -12,12 +12,12 @@ NULLCMD = :
 #### Start of system configuration section. ####
 
 srcdir = .
-topdir = /home/trotto/.rvm/rubies/ruby-2.4.0/include/ruby-2.4.0
+topdir = /home/pi/.rvm/rubies/ruby-2.4.0/include/ruby-2.4.0
 hdrdir = $(topdir)
-arch_hdrdir = /home/trotto/.rvm/rubies/ruby-2.4.0/include/ruby-2.4.0/x86_64-linux
+arch_hdrdir = /home/pi/.rvm/rubies/ruby-2.4.0/include/ruby-2.4.0/armv7l-linux-eabihf
 PATH_SEPARATOR = :
 VPATH = $(srcdir):$(arch_hdrdir)/ruby:$(hdrdir)/ruby
-prefix = $(DESTDIR)/home/trotto/.rvm/rubies/ruby-2.4.0
+prefix = $(DESTDIR)/home/pi/.rvm/rubies/ruby-2.4.0
 rubysitearchprefix = $(rubylibprefix)/$(sitearch)
 rubyarchprefix = $(rubylibprefix)/$(arch)
 rubylibprefix = $(libdir)/$(RUBY_BASE_NAME)
@@ -31,8 +31,8 @@ rubyhdrdir = $(includedir)/$(RUBY_VERSION_NAME)
 vendorarchdir = $(vendorlibdir)/$(sitearch)
 vendorlibdir = $(vendordir)/$(ruby_version)
 vendordir = $(rubylibprefix)/vendor_ruby
-sitearchdir = $(DESTDIR)./.gem.20171021-17472-it5fpu
-sitelibdir = $(DESTDIR)./.gem.20171021-17472-it5fpu
+sitearchdir = $(DESTDIR)./.gem.20171021-23230-uflc99
+sitelibdir = $(DESTDIR)./.gem.20171021-23230-uflc99
 sitedir = $(rubylibprefix)/site_ruby
 rubyarchdir = $(rubylibdir)/$(arch)
 rubylibdir = $(rubylibprefix)/$(ruby_version)
@@ -54,7 +54,7 @@ oldincludedir = $(DESTDIR)/usr/include
 includedir = $(prefix)/include
 localstatedir = $(prefix)/var
 sharedstatedir = $(prefix)/com
-sysconfdir = $(DESTDIR)/etc
+sysconfdir = $(prefix)/etc
 datadir = $(datarootdir)
 datarootdir = $(prefix)/share
 libexecdir = $(exec_prefix)/libexec
@@ -67,8 +67,8 @@ CC = gcc
 CXX = g++
 LIBRUBY = $(LIBRUBY_SO)
 LIBRUBY_A = lib$(RUBY_SO_NAME)-static.a
-LIBRUBYARG_SHARED = -Wl,-rpath,'$${ORIGIN}/../lib' -Wl,-R'$${ORIGIN}/../lib' -l$(RUBY_SO_NAME)
-LIBRUBYARG_STATIC = -Wl,-rpath,'$${ORIGIN}/../lib' -Wl,-R'$${ORIGIN}/../lib' -l$(RUBY_SO_NAME)-static
+LIBRUBYARG_SHARED = -Wl,-R$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)
+LIBRUBYARG_STATIC = -Wl,-R$(libdir) -L$(libdir) -l$(RUBY_SO_NAME)-static
 empty =
 OUTFLAG = -o $(empty)
 COUTFLAG = -o $(empty)
@@ -79,15 +79,15 @@ cflags   = $(optflags) $(debugflags) $(warnflags)
 cxxflags = $(optflags) $(debugflags) $(warnflags)
 optflags = -O3 -fno-fast-math
 debugflags = -ggdb3
-warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format -Wno-maybe-uninitialized
+warnflags = -Wall -Wextra -Wno-unused-parameter -Wno-parentheses -Wno-long-long -Wno-missing-field-initializers -Wno-tautological-compare -Wno-parentheses-equality -Wno-constant-logical-operand -Wno-self-assign -Wunused-variable -Wimplicit-int -Wpointer-arith -Wwrite-strings -Wdeclaration-after-statement -Wimplicit-function-declaration -Wdeprecated-declarations -Wno-packed-bitfield-compat -Wsuggest-attribute=noreturn -Wsuggest-attribute=format
 CCDLFLAGS = -fPIC
 CFLAGS   = $(CCDLFLAGS) $(cflags)  -fPIC  -g -DXP_UNIX -O3 -Wall -Wcast-qual -Wwrite-strings -Wconversion -Wmissing-noreturn -Winline -DNOKOGIRI_USE_PACKAGED_LIBRARIES $(ARCH_FLAG)
 INCFLAGS = -I. -I$(arch_hdrdir) -I$(hdrdir)/ruby/backward -I$(hdrdir) -I$(srcdir)
-DEFS     = 
-CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxslt/1.1.30/include -I/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5/include/libxml2 -I/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5/include/libxml2  $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxslt/1.1.30\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\""
+DEFS     = -D_FILE_OFFSET_BITS=64
+CPPFLAGS = -DHAVE_XMLPARSEDOC -DHAVE_XSLTPARSESTYLESHEETDOC -DHAVE_EXSLTFUNCREGISTER -DHAVE_XMLHASFEATURE -DHAVE_XMLFIRSTELEMENTCHILD -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETPARSERSTRUCTUREDERRORS -DHAVE_XMLRELAXNGSETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETVALIDSTRUCTUREDERRORS -DHAVE_XMLSCHEMASETPARSERSTRUCTUREDERRORS -I/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxslt/1.1.30/include -I/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5/include/libxml2 -I/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5/include/libxml2  $(DEFS) $(cppflags) "-DNOKOGIRI_LIBXML2_PATH=\"/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5\"" "-DNOKOGIRI_LIBXML2_PATCHES=\"\"" "-DNOKOGIRI_LIBXSLT_PATH=\"/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxslt/1.1.30\"" "-DNOKOGIRI_LIBXSLT_PATCHES=\"\""
 CXXFLAGS = $(CCDLFLAGS) $(cxxflags) $(ARCH_FLAG)
 ldflags  = -L. -fstack-protector -rdynamic -Wl,-export-dynamic
-dldflags = -Wl,--compress-debug-sections=zlib 
+dldflags =  
 ARCH_FLAG = 
 DLDFLAGS = $(ldflags) $(dldflags) $(ARCH_FLAG)
 LDSHARED = $(CC) -shared
@@ -102,7 +102,7 @@ RUBY_VERSION_NAME = $(RUBY_BASE_NAME)-$(ruby_version)
 RUBYW_BASE_NAME = rubyw
 RUBY_BASE_NAME = ruby
 
-arch = x86_64-linux
+arch = armv7l-linux-eabihf
 sitearch = $(arch)
 ruby_version = 2.4.0
 ruby = $(bindir)/$(RUBY_BASE_NAME)
@@ -113,7 +113,7 @@ RM = rm -f
 RM_RF = $(RUBY) -run -e rm -- -rf
 RMDIRS = rmdir --ignore-fail-on-non-empty -p
 MAKEDIRS = /bin/mkdir -p
-INSTALL = /usr/bin/install
+INSTALL = /usr/bin/install -c
 INSTALL_PROG = $(INSTALL) -m 0755
 INSTALL_DATA = $(INSTALL) -m 644
 COPY = cp
@@ -122,8 +122,8 @@ TOUCH = exit >
 #### End of system configuration section. ####
 
 preload = 
-libpath = . $(libdir) /home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5/lib /home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxslt/1.1.30/lib
-LIBPATH =  -L. -L$(libdir) -Wl,-R$(libdir) -L/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5/lib -Wl,-R/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5/lib -L/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxslt/1.1.30/lib -Wl,-R/home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxslt/1.1.30/lib
+libpath = . $(libdir) /home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5/lib /home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxslt/1.1.30/lib /usr/lib/arm-linux-gnueabihf
+LIBPATH =  -L. -L$(libdir) -Wl,-R$(libdir) -L/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5/lib -Wl,-R/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5/lib -L/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxslt/1.1.30/lib -Wl,-R/home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxslt/1.1.30/lib -L/usr/lib/arm-linux-gnueabihf -Wl,-R/usr/lib/arm-linux-gnueabihf
 DEFFILE = 
 
 CLEANFILES = mkmf.log
@@ -134,11 +134,11 @@ extout =
 extout_prefix = 
 target_prefix = /nokogiri
 LOCAL_LIBS = 
-LIBS = $(LIBRUBYARG_SHARED) /home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxslt/1.1.30/lib/libexslt.a -lm -ldl -lz /home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5/lib/libxml2.a /home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxslt/1.1.30/lib/libxslt.a -ldl -lm -lz /home/trotto/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/x86_64-pc-linux-gnu/libxml2/2.9.5/lib/libxml2.a -lpthread -lgmp -ldl -lcrypt -lm   -lc 
+LIBS = $(LIBRUBYARG_SHARED) /home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxslt/1.1.30/lib/libexslt.a -lm -ldl -llzma -lz /home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5/lib/libxml2.a /home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxslt/1.1.30/lib/libxslt.a -ldl -lm -llzma -lz /home/pi/ruby/nbaparse/vendor/bundle/ruby/2.4.0/gems/nokogiri-1.8.1/ports/armv7l-unknown-linux-gnueabihf/libxml2/2.9.5/lib/libxml2.a -llzma -lpthread -lgmp -ldl -lcrypt -lm   -lc 
 ORIG_SRCS = html_document.c html_element_description.c html_entity_lookup.c html_sax_parser_context.c html_sax_push_parser.c nokogiri.c xml_attr.c xml_attribute_decl.c xml_cdata.c xml_comment.c xml_document.c xml_document_fragment.c xml_dtd.c xml_element_content.c xml_element_decl.c xml_encoding_handler.c xml_entity_decl.c xml_entity_reference.c xml_io.c xml_libxml2_hacks.c xml_namespace.c xml_node.c xml_node_set.c xml_processing_instruction.c xml_reader.c xml_relax_ng.c xml_sax_parser.c xml_sax_parser_context.c xml_sax_push_parser.c xml_schema.c xml_syntax_error.c xml_text.c xml_xpath_context.c xslt_stylesheet.c
 SRCS = $(ORIG_SRCS) 
 OBJS = html_document.o html_element_description.o html_entity_lookup.o html_sax_parser_context.o html_sax_push_parser.o nokogiri.o xml_attr.o xml_attribute_decl.o xml_cdata.o xml_comment.o xml_document.o xml_document_fragment.o xml_dtd.o xml_element_content.o xml_element_decl.o xml_encoding_handler.o xml_entity_decl.o xml_entity_reference.o xml_io.o xml_libxml2_hacks.o xml_namespace.o xml_node.o xml_node_set.o xml_processing_instruction.o xml_reader.o xml_relax_ng.o xml_sax_parser.o xml_sax_parser_context.o xml_sax_push_parser.o xml_schema.o xml_syntax_error.o xml_text.o xml_xpath_context.o xslt_stylesheet.o
-HDRS = $(srcdir)/html_sax_parser_context.h $(srcdir)/nokogiri.h $(srcdir)/xml_reader.h $(srcdir)/xml_entity_reference.h $(srcdir)/xml_syntax_error.h $(srcdir)/xml_comment.h $(srcdir)/html_entity_lookup.h $(srcdir)/xml_libxml2_hacks.h $(srcdir)/xml_sax_parser_context.h $(srcdir)/xml_encoding_handler.h $(srcdir)/xml_attribute_decl.h $(srcdir)/xml_element_content.h $(srcdir)/xml_attr.h $(srcdir)/xml_xpath_context.h $(srcdir)/xml_node.h $(srcdir)/xml_sax_parser.h $(srcdir)/xml_sax_push_parser.h $(srcdir)/xml_cdata.h $(srcdir)/html_document.h $(srcdir)/xml_processing_instruction.h $(srcdir)/xml_dtd.h $(srcdir)/html_sax_push_parser.h $(srcdir)/xml_text.h $(srcdir)/xml_node_set.h $(srcdir)/xml_document.h $(srcdir)/xml_namespace.h $(srcdir)/html_element_description.h $(srcdir)/xml_schema.h $(srcdir)/xml_document_fragment.h $(srcdir)/xml_io.h $(srcdir)/xslt_stylesheet.h $(srcdir)/xml_relax_ng.h $(srcdir)/xml_element_decl.h $(srcdir)/xml_entity_decl.h
+HDRS = $(srcdir)/xml_encoding_handler.h $(srcdir)/xml_element_decl.h $(srcdir)/xml_schema.h $(srcdir)/xml_io.h $(srcdir)/xml_libxml2_hacks.h $(srcdir)/xml_sax_push_parser.h $(srcdir)/xml_xpath_context.h $(srcdir)/xml_syntax_error.h $(srcdir)/xml_attr.h $(srcdir)/xml_reader.h $(srcdir)/xml_node.h $(srcdir)/xml_processing_instruction.h $(srcdir)/xml_entity_decl.h $(srcdir)/xml_namespace.h $(srcdir)/xml_text.h $(srcdir)/html_document.h $(srcdir)/html_entity_lookup.h $(srcdir)/xml_dtd.h $(srcdir)/xml_node_set.h $(srcdir)/html_sax_push_parser.h $(srcdir)/xml_sax_parser.h $(srcdir)/nokogiri.h $(srcdir)/xml_element_content.h $(srcdir)/xml_cdata.h $(srcdir)/xml_comment.h $(srcdir)/html_sax_parser_context.h $(srcdir)/xml_attribute_decl.h $(srcdir)/xml_entity_reference.h $(srcdir)/xml_sax_parser_context.h $(srcdir)/xml_relax_ng.h $(srcdir)/xml_document.h $(srcdir)/html_element_description.h $(srcdir)/xslt_stylesheet.h $(srcdir)/xml_document_fragment.h
 LOCAL_HDRS = 
 TARGET = nokogiri
 TARGET_NAME = nokogiri

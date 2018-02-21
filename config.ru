@@ -2,4 +2,4 @@
 
 require './parsefeed.rb'
 
-run Pumatra
+run Puma

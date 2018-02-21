@@ -28,6 +28,10 @@ class Teamparse
 
 end
 
+configure {
+  set :server, :puma
+}
+
 get '/' do
   @teamcategory = Teamparse.new.teamcategory.upcase
   @items = Teamparse.new.items.map.each_with_index do |item, index|
