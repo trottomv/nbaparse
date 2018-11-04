@@ -12,12 +12,16 @@
 
 <body>
 
-<h1>NBA GAMES PARSE</h1>
-<form action="/nba/all">
-      <input type="submit" value="Last 10 NBA Games" />
+<h1>LAST 10 NBA GAMES</h1>
+
+<form action="/nba">
+      <input type="submit" value="Back" />
 </form>
-<form action="/nba/hr">
-      <input type="submit" value="Huston Rockets" />
-</form>
+
+<% @items.map do |item| %>
+  <h3><%= item[:itemtitle] %> [<a href='<%= item[:itemurl] %>'>link</a>]</h3>
+  <p>Video: <a href='<%= item[:itemframe] %>'><%= item[:itemframe] %></a></p>
+<% end %>
+
 
 </body>
