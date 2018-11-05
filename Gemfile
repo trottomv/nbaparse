@@ -7,3 +7,5 @@ gem 'sinatra-contrib'
 gem 'nokogiri'
 gem 'dotenv', '~> 2.1', '>= 2.1.1'
 gem "puma"
+gem "rack-protection", ">= 1.5.5"
+

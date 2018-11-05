@@ -1,17 +1,17 @@
 GEM
   remote: https://rubygems.org/
   specs:
-    backports (3.11.1)
-    dotenv (2.2.1)
+    backports (3.11.4)
+    dotenv (2.5.0)
     mini_portile2 (2.3.0)
     multi_json (1.13.1)
-    nokogiri (1.8.2)
+    nokogiri (1.8.5)
       mini_portile2 (~> 2.3.0)
-    puma (3.11.2)
-    rack (1.6.8)
-    rack-protection (1.5.4)
+    puma (3.12.0)
+    rack (1.6.10)
+    rack-protection (1.5.5)
       rack
-    rack-test (0.8.2)
+    rack-test (1.1.0)
       rack (>= 1.0, < 3)
     sinatra (1.4.8)
       rack (~> 1.5)
@@ -33,6 +33,7 @@ DEPENDENCIES
   dotenv (~> 2.1, >= 2.1.1)
   nokogiri
   puma
+  rack-protection (>= 1.5.5)
   sinatra (~> 1.4, >= 1.4.7)
   sinatra-contrib
 
